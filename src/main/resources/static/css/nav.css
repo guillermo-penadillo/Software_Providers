@@ -1,0 +1,20 @@
+/* Agrega tus estilos personalizados aquí */
+
+body {
+    background-color: #f8f9fa; /* Color de fondo */
+    color: #343a40; /* Color del texto */
+}
+
+.navbar {
+    border-radius: 0; /* Bordes cuadrados */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px; /* Espaciado entre elementos de la barra de navegación */
+}
+
+header {
+    /* Estilos para el encabezado si es necesario */
+}
+
+/* Agrega más estilos según sea necesario */

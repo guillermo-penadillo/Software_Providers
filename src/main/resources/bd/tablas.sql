@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS tb_categorias (
+    id_cat INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nombre_cat VARCHAR(100) NOT NULL,
+    desc_cat VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tb_tipos_empleado (
+    id_tipo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nombre_tipo VARCHAR(50) NOT NULL,
+    desc_tipo VARCHAR(200) NOT NULL
+);

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="fragments/headFragment :: head">
+    <title>Principal</title>
+</head>
+
+<body>
+    <!-- Header de la pagina-->
+    <header>
+        <div th:replace="fragments/headerFragment :: header"></div>
+    </header>
+    <!-- Nav de la pagina-->
+    <nav>
+        <div th:replace="fragments/navFragment :: nav"></div>
+    </nav>
+
+
+    <div>
+        <h1>
+            Bienvenido Cliente!
+        </h1>
+
+    </div>
+
+
+    <!-- Footer de la pagina-->
+    <footer>
+        <div th:replace="fragments/footerFragment :: footer"></div>
+    </footer>
+</body>
+</html>
