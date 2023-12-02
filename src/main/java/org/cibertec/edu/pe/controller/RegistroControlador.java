@@ -26,7 +26,7 @@ public class RegistroControlador {
         } else if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
             return "redirect:/admin";
         } else {
-            throw new IllegalStateException("Rol no manejado después del inicio de sesión");
+            throw new IllegalStateException("Rol no manejado despuï¿½s del inicio de sesiï¿½n");
         }
     }
     @GetMapping("/cliente")
@@ -41,6 +41,12 @@ public class RegistroControlador {
     public String verPaginaDeInicioAdmin(Model modelo) {
         modelo.addAttribute("usuarios", usuarioService.listarUsuarios());
         return "AdminPrincipal";
+    }
+
+    @GetMapping("/empleado")
+    @PreAuthorize("hasRole('MANTENEDOR')")
+    public String empleadoView() {
+        return "EmpleadoPrincipal";
     }
     
 

@@ -19,6 +19,8 @@
 	import org.cibertec.edu.pe.repository.IUsuarioRepo;
 	import org.cibertec.edu.pe.service.UsuarioService;
 	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.security.core.Authentication;
+	import org.springframework.security.core.context.SecurityContextHolder;
 	import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
 	import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +65,7 @@
             // Puedes redirigir a la página de perfil u otro lugar después de la actualización
             return "redirect:/cliente/verPerfil/" + registroDTO.getId();
         }
-	
+	*/
 	    @GetMapping("/verDetalle")
 	    public String detalleView(@RequestParam("prodId") int prodId, Model model)  {
 	        try {
@@ -74,19 +76,19 @@
 	        }
 	        return "ClienteVerDetalleProducto";
 	    }
-	*/
-	    @GetMapping("/verPerfil/{id}")
-	    public String perfilView(Model model, @PathVariable("id") int id) {
-	    	Usuario user = usuarioRepo.findById(id).orElse(null);
 	
-	        if (user != null) {
-	            model.addAttribute("cliente", user);
-	            return "ClienteVerPerfil";
-	        } else {
-	            // Manejar el caso donde el cliente no se encuentra, puedes redirigir o mostrar un mensaje de error.
-	            return "redirect:/error";
-	        }
-	    }
+		@GetMapping("/verPerfil/{username}")
+		public String perfilView(Model model, @PathVariable("username") String username) {
+			Usuario user = usuarioRepo.findByUsername(username);
+
+			if (user != null) {
+				model.addAttribute("cliente", user);
+				return "ClienteVerPerfil";
+			} else {
+				// Redirigir al usuario a la página de inicio, por ejemplo
+				return "redirect:/login";
+			}
+		}
 	
 	    //
 	    // Proceso de Compra
@@ -141,7 +143,21 @@
 	        }
 	
 	        double total = carrito.stream().mapToDouble(Carrito::getSubtotal).sum();
-	
+
+
+			// Obtener el nombre de usuario del principal autenticado
+			String username = getUsernameFromPrincipal();
+
+			// Buscar al usuario por nombre de usuario
+			Usuario user = usuarioRepo.findByUsername(username);
+
+			if (user != null) {
+				model.addAttribute("cliente", user);
+			} else {
+				// Redirigir al usuario a la página de inicio, por ejemplo
+				return "redirect:/login";
+			}
+
 	        model.addAttribute("carrito", carrito);
 	        model.addAttribute("total", total);
 	
@@ -166,7 +182,7 @@
 	        }
 	        return "redirect:/cliente/verCarrito";
 	    }
-	
+	    
 	    @GetMapping("/cancelarCompra")
 	    public String cancelarCompra(HttpSession session) {
 	        session.removeAttribute("carrito");
@@ -239,4 +255,10 @@
 	            return "B0001";
 	        }
 	    }
+
+		// Método para obtener el nombre de usuario del principal autenticado
+		private String getUsernameFromPrincipal() {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			return authentication.getName();
+		}
 	}

@@ -14,41 +14,42 @@
 
 	<!-- Enlace a styles.css -->
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+	<link rel="stylesheet" type="text/css" href="/css/ClienteVerDetalleProducto.css">
 </head>
 
 <body>
-
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+<div class="background-container"></div>
+<div class="overlay"></div>
+<nav class="navbar navbar-inverse">
+	<input type="hidden" th:value="${#authentication.principal.username}" />
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
 					aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verPerfil/1}">Perfil</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
-				</ul>
-			</div>
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
 		</div>
-	</nav>
-
-	<br>
-	<br>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verPerfil/{username}(username=${#authentication.principal.username})}">Perfil</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
 	<div class="container mt-5">
 		<form th:action="@{/cliente/agregarAlCarrito}" method="get">
 			<div class="card">
 				<div class="row g-0">
 					<div class="col-md-4">
-						<img th:src="@{'images/' + ${producto.imagen}}" class="card-img" alt="Imagen del producto">
+						<img th:src="@{'/images/' + ${producto.imagen}}" class="card-img-top" alt="Imagen del producto">
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">
