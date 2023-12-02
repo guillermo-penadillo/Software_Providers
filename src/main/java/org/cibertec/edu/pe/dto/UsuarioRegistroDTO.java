@@ -4,21 +4,27 @@ import lombok.Data;
 
 @Data
 public class UsuarioRegistroDTO {
-    private Long id;
+    private int id;
     private String nombre;
-    private String apellido;
-    private String email;
+    private String apellidoPat;
+    private String apellidoMat;
+    private String username;
     private String password;
+    private String telefono;
 
     public UsuarioRegistroDTO() {
 
     }
 
-    public UsuarioRegistroDTO(String nombre, String apellido, String email, String password) {
-        super();
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.password = password;
-    }
+	public UsuarioRegistroDTO(String nombre, String apellidoPat, String apellidoMat, String username, String password,
+			String telefono) {
+		this.nombre = nombre;
+		this.apellidoPat = apellidoPat;
+		this.apellidoMat = apellidoMat;
+		this.username = username;
+		this.password = password;
+		this.telefono = telefono;
+	}
+
+
 }

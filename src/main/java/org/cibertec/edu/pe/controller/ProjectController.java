@@ -14,15 +14,5 @@ import java.util.List;
 @Controller
 public class ProjectController {
 
-    @RequestMapping("/")
-    public String index(Model model) {
-        return "indexMio";
-    }
-
-    @RequestMapping("/cliente")
-    public String clienteView() {
-        return "ClientePrincipal";
-    }
-
 
 }

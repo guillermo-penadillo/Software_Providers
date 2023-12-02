@@ -1,0 +1,121 @@
+/* styles.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.navbar {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.navbar a {
+    color: #ffffff;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table thead {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.py-4 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Estilo para los botones de impresión */
+@media print {
+    .btn-print {
+        display: none;
+    }
+}

@@ -7,3 +7,6 @@ INSERT IGNORE INTO tb_categorias (nombre_cat, desc_cat) VALUES ('Sistemas Operat
 INSERT IGNORE INTO tb_tipos_empleado (nombre_tipo, desc_tipo) VALUES ('Administrador', 'Encargado de la gestión y supervisión general');
 INSERT IGNORE INTO tb_tipos_empleado (nombre_tipo, desc_tipo) VALUES ('Mantenedor', 'Encargado del mantenimiento de productos y categorías');
 
+INSERT IGNORE INTO rol (id,nombre) VALUES (1, 'ROLE_CLIENTE');
+INSERT IGNORE INTO rol (id,nombre) VALUES (2, 'ROLE_ADMIN');
+INSERT IGNORE INTO rol (id,nombre) VALUES (3, 'ROLE_MANTENEDOR');

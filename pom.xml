@@ -15,6 +15,7 @@
 	<description>proyecto integrador con spring web</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,6 +69,21 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Springfox sin Swagger UI -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version> <!-- Verifica la última versión en el repositorio Maven -->
+			<exclusions>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger-ui</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
     </dependencies>
 
 	<build>

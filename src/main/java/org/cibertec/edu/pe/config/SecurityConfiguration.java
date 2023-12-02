@@ -1,4 +1,4 @@
-package org.cibertec.edu.pe.security;
+package org.cibertec.edu.pe.config;
 
 import org.cibertec.edu.pe.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	//Necesario para evitar que la seguridad se aplique a los resources
+    //Como los css, imagenes y javascripts
+    String[] resources = new String[]{
+            "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**","/v3/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**"
+    };
+    
     @Autowired
     private UsuarioService usuarioService;
 
@@ -39,22 +45,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                        "/registro**",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+        http.authorizeRequests()
+            .antMatchers(resources).permitAll()
+            .antMatchers("/", "/login","/registro").permitAll()
+            .antMatchers("/empleado/**").hasRole("MANTENEDOR")
+            .antMatchers("/cliente/**").hasRole("CLIENTE")
+            .antMatchers("/admin/**").hasRole("ADMIN")
+            .anyRequest().authenticated()
+            .and()
+            .csrf().disable()
+            .formLogin()
+            .loginPage("/login")
+            .defaultSuccessUrl("/default").permitAll()
+            .failureUrl("/login?error=true")
+            .usernameParameter("username")
+            .passwordParameter("password")
+            .and()
+            .logout()
+            .permitAll()
+            .logoutSuccessUrl("/login?logout");
     }
+
 }

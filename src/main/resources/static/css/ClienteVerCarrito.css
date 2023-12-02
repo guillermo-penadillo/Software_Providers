@@ -1,0 +1,198 @@
+body {
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 0.7s ease-in-out;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: #495057;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom right, #ebe887, #ecb567);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+table.table{
+    Margin:0;
+    padding:0;
+    width: 100%;
+}
+
+th{
+    background-color: #cf7918;
+    text-align: center;
+    color:rgb(48, 48, 48);
+}
+
+div.container {
+    margin-top: 0;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+h5>b{
+    color:rgb(48, 48, 48);
+}
+
+h1>b{
+    font-size: 42px;
+    margin: auto;
+    color: rgb(48, 48, 48);
+}
+
+div.container.mt-4 {
+    margin-top: 4%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slideInUp 1s ease-in-out;
+}
+
+.card-header {
+    background-color: #006400;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+button.btn.btn-primary {
+    background-color: #ffd700;
+    color: black;
+    border: 0;
+}
+
+a.btn.btn-secondary {
+    background-color: #ed4318;
+    color: white;
+    margin-left: 3%;
+}
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+div.card-body {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+div.row {
+    margin: 0;
+}
+
+th,
+td,
+h1 {
+    text-align: center;
+    color: black;
+}
+div.card-header.text-center{
+    background-color: #cf7918;
+    color: black;
+}
+
+/* Animación de fondo al cargar la página */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Estilos para dispositivos pequeños (celulares) */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para dispositivos medianos (tabletas) */
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    table {
+        font-size: 16px;
+    }
+}
+
+/* Estilos para dispositivos medianos (tabletas) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    table {
+        font-size: 16px;
+    }
+}
+
+/* Estilos para dispositivos grandes (computadoras) */
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    table {
+        font-size: 18px;
+    }
+}
+
+/* Estilos para dispositivos extragrandes (pantallas grandes) */
+@media only screen and (min-width: 1200px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    table {
+        font-size: 20px;
+    }
+}

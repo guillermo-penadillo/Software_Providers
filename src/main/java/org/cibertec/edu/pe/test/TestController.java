@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.cibertec.edu.pe.model.Productos;
+import org.cibertec.edu.pe.model.Usuario;
 import org.cibertec.edu.pe.repository.IProductosRepo;
+import org.cibertec.edu.pe.repository.IUsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,34 +18,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("test/v1/producto")
+@RequestMapping("test/usuarios")
 public class TestController {
 	
 	@Autowired
-	IProductosRepo prodRepo;
+	IUsuarioRepo usuarioRepo;
 	
 	@GetMapping
-	public List<Productos> listar(){
-		return prodRepo.findAll();
+	public List<Usuario> listar(){
+		return usuarioRepo.findAll();
 	}
 	
 	@PostMapping
-	public void insertar(@RequestBody Productos p) {
-		prodRepo.save(p);
+	public void insertar(@RequestBody Usuario usuario) {
+		usuarioRepo.save(usuario);
 	}
 	
 	@PutMapping
-	public void modificar(@RequestBody Productos p) {
-		prodRepo.save(p);
+	public void modificar(@RequestBody Usuario usuario) {
+		usuarioRepo.save(usuario);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Optional<Productos> listarPorId(@PathVariable("id") int id) {
-		return prodRepo.findById(id);
+	public Optional<Usuario> listarPorId(@PathVariable("id") int id) {
+		return usuarioRepo.findById(id);
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public void eliminar(@PathVariable("id") int id) {
-		prodRepo.deleteById(id);
+		usuarioRepo.deleteById(id);
 	} 
 }

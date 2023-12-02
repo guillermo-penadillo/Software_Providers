@@ -2,104 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Detalles de la compra</title>
+	<meta charset="UTF-8">
+	<title>Detalles de la compra</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		
+	<!-- Enlace a styles.css -->
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 20px;
-        }
-
-        .container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        h2 {
-            color: #343a40;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #dee2e6;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        thead {
-            background-color: #007bff;
-            color: #ffffff;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        button {
-            margin-top: 20px;
-        }
-    </style>
+	<!-- Enlace a ClienteVerBoleta.css -->
+	<link rel="stylesheet" type="text/css" href="/css/ClienteVerBoleta.css">
 </head>
 
 <body>
-<div class="container">
-    <h2 class="mb-4">Detalles de la Boleta</h2>
-    <p>Número de Boleta: <span th:text="${boleta.numBol}"></span></p>
-    <p>Fecha de Boleta: <span th:text="${#dates.format(boleta.fechaBoleta, 'yyyy-MM-dd HH:mm')}"></span></p>
+	<div class="background-container"></div>
+	<div class="overlay"></div>
 
-    <table class="table mt-4">
-        <!-- Encabezados de la tabla -->
-        <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <!-- Detalles de la boleta -->
-        <tbody>
-        <tr th:each="detalle : ${detallesBoleta}">
-            <td th:text="${detalle.productos.nombre_prod}"></td>
-            <td th:text="${detalle.cantidad}"></td>
-            <td th:text="${detalle.precioVenta}"></td>
-            <td th:text="${detalle.cantidad * detalle.precioVenta}"></td>
-        </tr>
-        </tbody>
-    </table>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h2 class="mb-0"><b>Detalles de la Boleta</b></h2>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<p class="mb-2">Número de Boleta: <span th:text="${boleta.numBol}"></span></p>
+						<p class="mb-2">Fecha de Boleta: <span
+								th:text="${#dates.format(boleta.fechaBoleta, 'yyyy-MM-dd HH:mm')}"></span></p>
+						<p class="mb-2">Precio Total: S/ <span th:text="${boleta.total}"></span></p>		
+					</div>
+				</div>
 
-    <div class="d-flex justify-content-between">
-        <div>
-            <button class="btn btn-primary">Imprimir</button>
-        </div>
-        <div>
-            <a th:href="@{/}" class="btn btn-secondary">Volver</a>
-        </div>
-    </div>
-</div>
+				<table class="table mt-4">
+					<thead class="table-dark">
+						<tr>
+							<th>Producto</th>
+							<th>Cantidad</th>
+							<th>Precio Unitario</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="detalle : ${detallesBoleta}">
+							<td th:text="${detalle.productos.nombre_prod}"></td>
+							<td th:text="${detalle.cantidad}"></td>
+							<td th:text="${detalle.precioVenta}"></td>
+							<td th:text="${detalle.cantidad * detalle.precioVenta}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="card-footer d-flex justify-content-between">
+				<div>
+					<button class="btn btn-primary">Imprimir</button>
+				</div>
+				<div>
+					<a th:href="@{/cliente}" class="btn btn-secondary">Volver</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
 
 </body>
 

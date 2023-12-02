@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios de la empresa</title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Username</th>
+                <th>Telefono</th>
+                <th>Modificar</th>
+                <th>Quitar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.id}"></td>
+                <td th:text="${usuario.nombre}"></td>
+                <td th:text="${usuario.apellidoPat}"></td>
+                <td th:text="${usuario.apellidoMat}"></td>
+                <td th:text="${usuario.username}"></td>
+                <td th:text="${usuario.telefono}"></td>
+                <td>Lapiz</td>
+                <td>Eliminar</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a th:href="@{/admin}">Volver</a>
+    </div>
+</div>
+</body>
+</html>

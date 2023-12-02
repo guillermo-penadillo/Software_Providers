@@ -18,6 +18,8 @@ public class Boleta {
     private Date fechaBoleta;
 
     @ManyToOne
-    @JoinColumn(name = "id_cli")
-    private Clientes clientes;
+    @JoinColumn(name = "id")
+    private Usuario usuario;
+    
+    private double total;
 }
