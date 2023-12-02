@@ -6,96 +6,114 @@
 	<title>Perfil</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-		  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 	<!-- Enlace a styles.css -->
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
 					aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verPerfil/1}">Perfil</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+				</ul>
+			</div>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verPerfil/1}">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
-			</ul>
+	</nav>
+	<div></div>
+	<br>
+	<br>
+	<div class="container mt-5">
+		<div class="tab-content mt-2">
+			<form>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label>Nombre</label>
+						<input th:field="*{cliente.nombre}" type="text" class="form-control"
+							onchange="habilitarBoton()">
+					</div>
+					<div class="col-md-6">
+						<label>Apellido Paterno</label>
+						<input th:field="*{cliente.apellidoPat}" type="text" class="form-control"
+							onchange="habilitarBoton()">
+					</div>
+					<div class="col-md-6">
+						<label>Apellido Materno</label>
+						<input th:field="*{cliente.apellidoMat}" type="text" class="form-control"
+							onchange="habilitarBoton()">
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label>Usuario</label>
+						<input th:field="*{cliente.username}" type="text" class="form-control"
+							onchange="habilitarBoton()">
+					</div>
+					<div class="col-md-6">
+						<label>Telefono</label>
+						<input th:field="*{cliente.telefono}" type="text" class="form-control"
+							onchange="habilitarBoton()">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<button class="btn btn-primary" onclick="guardarDatos()" disabled>Actualizar Datos</button>
+						<button class="btn btn-danger">Eliminar Cuenta</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-</nav>
-<div></div>
-<br>
-<br>
-<div class="container mt-5">
-	<div class="tab-content mt-2">
-		<form>
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label>Nombre</label>
-					<input th:field="*{cliente.nombre}" type="text" class="form-control" onchange="habilitarBoton()">
-				</div>
-				<div class="col-md-6">
-					<label>Apellido Paterno</label>
-					<input th:field="*{cliente.apellidoPat}" type="text" class="form-control" onchange="habilitarBoton()">
-				</div>
-				<div class="col-md-6">
-					<label>Apellido Materno</label>
-					<input th:field="*{cliente.apellidoMat}" type="text" class="form-control" onchange="habilitarBoton()">
-				</div>
-			</div>
-			<div class="row mb-3">
-				<div class="col-md-6">
-					<label>Usuario</label>
-					<input th:field="*{cliente.username}" type="text" class="form-control" onchange="habilitarBoton()">
-				</div>
-				<div class="col-md-6">
-					<label>Telefono</label>
-					<input th:field="*{cliente.telefono}" type="text" class="form-control" onchange="habilitarBoton()">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<button class="btn btn-primary" onclick="guardarDatos()" disabled>Actualizar Datos</button>
-					<button class="btn btn-danger">Eliminar Cuenta</button>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
 
-<script>
-	function habilitarBoton() {
-        document.querySelector("button.btn-primary").disabled = false;
-    }
+	<script>
+		function habilitarBoton() {
+			document.querySelector("button.btn-primary").disabled = false;
+		}
 
-    function guardarDatos() {
-        // Aquí puedes agregar la lógica para enviar los nuevos datos al servidor
-        // (por ejemplo, mediante una solicitud AJAX) y luego deshabilitar el botón
+		function guardarDatos() {
+			// Aquí puedes agregar la lógica para enviar los nuevos datos al servidor
+			// (por ejemplo, mediante una solicitud AJAX) y luego deshabilitar el botón
 
-        // Deshabilitar el botón después de hacer clic
-        document.querySelector("button.btn-primary").disabled = true;
-    }
-</script>
+			// Deshabilitar el botón después de hacer clic
+			document.querySelector("button.btn-primary").disabled = true;
+		}
+	</script>
+	<script>
+		window.watsonAssistantChatOptions = {
+			integrationID: "a7a1b160-3517-49a8-8e5f-e56fad9c43fd", // The ID of this integration.
+			region: "us-south", // The region your integration is hosted in.
+			serviceInstanceID: "f8aac667-cbcf-48c8-a36d-13f1c9ad2fbb", // The ID of your service instance.
+			onLoad: async (instance) => {await instance.render();}
+		};
+		setTimeout(function () {
+			const t = document.createElement('script');
+			t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+			document.head.appendChild(t);
+		});
+	</script>
 
 </body>
 

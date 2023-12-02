@@ -1,14 +1,18 @@
 package org.cibertec.edu.pe.config;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.cibertec.edu.pe.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -47,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers(resources).permitAll()
-            .antMatchers("/", "/login","/registro").permitAll()
+            .antMatchers("/", "/login", "/registro").permitAll()
             .antMatchers("/empleado/**").hasRole("MANTENEDOR")
             .antMatchers("/cliente/**").hasRole("CLIENTE")
             .antMatchers("/admin/**").hasRole("ADMIN")
@@ -65,5 +69,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .permitAll()
             .logoutSuccessUrl("/login?logout");
     }
+
 
 }
