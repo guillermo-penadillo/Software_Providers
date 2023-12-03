@@ -35,7 +35,7 @@
         </table>
 
         <div>
-            <a th:href="@{/admin}">Volver</a>
+            <a th:href="@{/admin}" class="btn btn-primary">Volver</a>
         </div>
     </div>
 
@@ -48,16 +48,16 @@
 
     <script>
         $(document).ready(function () {
-		$('#table').DataTable({
-			language: {
-				url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
-			},
-			columnDefs: [
-				{type: 'num', targets: 5}, 
-				{targets: [1, 2, 3, 4,6], searchable: false}
-			],
-		});
-	});
+            $('#usuariosTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+                },
+                columnDefs: [
+                    { type: 'num', targets: 4 }, // Configuración para que la columna de Username sea tratada como números
+                    { targets: [0, 1, 2, 3, 5], searchable: false } // Deshabilitar la búsqueda en las columnas 0, 1, 2, 3, 5
+                ],
+            });
+        });
     </script>
 
 </body>
