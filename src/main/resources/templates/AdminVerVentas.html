@@ -82,7 +82,8 @@
 				url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
 			},
 			columnDefs: [
-				{type: 'num', targets: 0} // Configuración para que la primera columna sea tratada como números
+				{type: 'num', targets: 0}, // Configuración para que la primera columna sea tratada como números
+				{targets: [1, 2, 3, 4], searchable: false} // Deshabilitar la búsqueda en las columnas 1, 2, 3, 4
 			],
 		});
 	});
