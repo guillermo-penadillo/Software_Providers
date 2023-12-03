@@ -48,24 +48,16 @@
 
     <script>
         $(document).ready(function () {
-            $('#usuariosTable').DataTable({
-                "searching": true, // Habilitar la caja de búsqueda
-                "order": [], // Deshabilitar la ordenación predeterminada
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json" // Traducción al español
-                },
-                "columns": [
-                    null,
-                    null,
-                    null,
-                    null,
-                    { "searchable": true }, // Hacer searchable solo la columna de Username
-                    null,
-                    null,
-                    null
-                ]
-            });
-        });
+		$('#table').DataTable({
+			language: {
+				url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+			},
+			columnDefs: [
+				{type: 'num', targets: 5}, 
+				{targets: [1, 2, 3, 4,6], searchable: false}
+			],
+		});
+	});
     </script>
 
 </body>

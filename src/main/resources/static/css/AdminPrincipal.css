@@ -1,0 +1,78 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 0.7s ease-in-out;
+    padding: 0;
+    overflow-x: hidden;
+    flex-direction: column;
+    min-height: 100vh;
+  }  
+
+.card-body>img {
+    max-width: 800px;
+    max-height: 490px;
+}
+
+.row{
+    animation: slideInUp 0.7s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: -16%;
+}
+
+#img1{
+    width: 80px;
+}
+
+.card-header{
+    background-color: rgb(122, 233, 132);
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to right, #ff6b6b, #6b6bff, #6bff88);
+}
+
+.card-title{
+    color: black;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

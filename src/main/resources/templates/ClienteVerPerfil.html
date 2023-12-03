@@ -98,19 +98,19 @@
 			document.querySelector("button.btn-primary").disabled = true;
 		}
 	</script>
-	<script>
-		window.watsonAssistantChatOptions = {
-			integrationID: "a7a1b160-3517-49a8-8e5f-e56fad9c43fd", // The ID of this integration.
-			region: "us-south", // The region your integration is hosted in.
-			serviceInstanceID: "f8aac667-cbcf-48c8-a36d-13f1c9ad2fbb", // The ID of your service instance.
-			onLoad: async (instance) => {await instance.render();}
-		};
-		setTimeout(function () {
-			const t = document.createElement('script');
-			t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-			document.head.appendChild(t);
-		});
-	</script>
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "52f4435f-4798-4080-961f-a5f3d4213664", // The ID of this integration.
+    region: "au-syd", // The region your integration is hosted in.
+    serviceInstanceID: "5c1e7aee-a75c-49ed-8cf3-583465c82e04", // The ID of your service instance.
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
 
 </body>
 
