@@ -14,138 +14,140 @@
 
 	<style>
 		body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f8f9fa;
+		}
 
-        header {
-            background-color: #343a40;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
+		header {
+			background-color: #343a40;
+			color: #fff;
+			padding: 20px 0;
+			text-align: center;
+		}
 
-        section {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
+		section {
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
 
 
-        p {
-            line-height: 1.6;
-            color: #555;
-        }
+		p {
+			line-height: 1.6;
+			color: #555;
+		}
 
-        .software-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+		.software-list {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
 
-        .software-item {
-            width: 30%;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-        }
+		.software-item {
+			width: 30%;
+			margin-bottom: 20px;
+			padding: 20px;
+			background-color: #f1f1f1;
+			border-radius: 5px;
+		}
 
-        .software-item img {
-            max-width: 100%;
-            height: auto;
-        }
+		.software-item img {
+			max-width: 100%;
+			height: auto;
+		}
 
-        footer {
-            background-color: #343a40;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+		footer {
+			background-color: #343a40;
+			color: #fff;
+			text-align: center;
+			padding: 10px;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
 	</style>
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
-	<input type="hidden" th:value="${#authentication.principal.username}" />
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+	<nav class="navbar navbar-inverse">
+		<input type="hidden" th:value="${#authentication.principal.username}" />
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
 					aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Software Providers</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
+					<li class="nav-item"><a class="nav-link"
+							th:href="@{/cliente/verPerfil/{username}(username=${#authentication.principal.username})}">Perfil</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+				</ul>
+			</div>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Inicio</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verProductos}">Productos</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verPerfil/{username}(username=${#authentication.principal.username})}">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/cliente/verCarrito}">Carrito</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+	</nav>
+
+
+	<div class="container">
+		<br>
+
+		<header>
+			<h4>
+				Bienvenido <span sec:authentication="principal.username"></span>
+			</h4>
+			<h1>Software Providers</h1>
+			<p>Tu plataforma para encontrar los mejores softwares</p>
+
+		</header>
+
+		<section>
+			<h2>Productos Destacados</h2>
+			<ul class="software-list">
+				<li class="software-item">
+					<img src="/images/office365.jpg" alt="office365">
+					<h3>Microsoft 365</h3>
+					<p>Suscripción completa de productividad.</p>
+				</li>
+				<li class="software-item">
+					<img src="/images/photoshop.jpg" alt="Photoshop">
+					<h3>Adobe Photoshop</h3>
+					<p>Software de edición de imágenes.</p>
+				</li>
+				<li class="software-item">
+					<img src="/images/norton.jpg" alt="Norton">
+					<h3>Norton Antivirus</h3>
+					<p>Protección antivirus y seguridad en línea.</p>
+				</li>
+				<li class="software-item">
+					<img src="/images/sublime.jpg" alt="Sublime Text">
+					<h3>Sublime Text</h3>
+					<p>Editor de texto avanzado para codificación.</p>
+				</li>
+				<li class="software-item">
+					<img src="/images/windows10.jpg" alt="Windows 10">
+					<h3>Windows 10</h3>
+					<p>Sistema operativo moderno y eficiente.</p>
+				</li>
 			</ul>
-		</div>
+		</section>
+
 	</div>
-</nav>
-
-
-<div class="container">
-	<br>
-
-	<header>
-		<h4>
-			Bienvenido <span sec:authentication="principal.username"></span>
-		</h4>
-		<h1>Software Providers</h1>
-		<p>Tu plataforma para encontrar los mejores softwares</p>
-
-	</header>
-
-	<section>
-		<h2>Productos Destacados</h2>
-		<ul class="software-list">
-			<li class="software-item">
-				<img src="/images/office365.jpg" alt="office365">
-				<h3>Microsoft 365</h3>
-				<p>Suscripción completa de productividad.</p>
-			</li>
-			<li class="software-item">
-				<img src="/images/photoshop.jpg" alt="Photoshop">
-				<h3>Adobe Photoshop</h3>
-				<p>Software de edición de imágenes.</p>
-			</li>
-			<li class="software-item">
-				<img src="/images/norton.jpg" alt="Norton">
-				<h3>Norton Antivirus</h3>
-				<p>Protección antivirus y seguridad en línea.</p>
-			</li>
-			<li class="software-item">
-				<img src="/images/sublime.jpg" alt="Sublime Text">
-				<h3>Sublime Text</h3>
-				<p>Editor de texto avanzado para codificación.</p>
-			</li>
-			<li class="software-item">
-				<img src="/images/windows10.jpg" alt="Windows 10">
-				<h3>Windows 10</h3>
-				<p>Sistema operativo moderno y eficiente.</p>
-			</li>
-		</ul>
-	</section>
-
-</div>
-<footer>
-	&copy; 2023 Software Providers. Todos los derechos reservados.
-</footer>
+	<footer>
+		&copy; 2023 Software Providers. Todos los derechos reservados.
+	</footer>
 
 
 	<!-- Latest compiled and minified JavaScript -->
@@ -154,19 +156,19 @@
 		crossorigin="anonymous"></script>
 
 
-	<script>
-		window.watsonAssistantChatOptions = {
-			integrationID: "a7a1b160-3517-49a8-8e5f-e56fad9c43fd", // The ID of this integration.
-			region: "us-south", // The region your integration is hosted in.
-			serviceInstanceID: "f8aac667-cbcf-48c8-a36d-13f1c9ad2fbb", // The ID of your service instance.
-			onLoad: async (instance) => {await instance.render();}
-		};
-		setTimeout(function () {
-			const t = document.createElement('script');
-			t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-			document.head.appendChild(t);
-		});
-	</script>
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "52f4435f-4798-4080-961f-a5f3d4213664", // The ID of this integration.
+    region: "au-syd", // The region your integration is hosted in.
+    serviceInstanceID: "5c1e7aee-a75c-49ed-8cf3-583465c82e04", // The ID of your service instance.
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
 </body>
 
 </html>
