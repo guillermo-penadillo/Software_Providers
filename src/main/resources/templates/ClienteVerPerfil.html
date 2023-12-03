@@ -43,46 +43,43 @@
 	</nav>
 	<div class="container mt-5">
 		<div class="tab-content mt-2">
-			<form>
+			<form th:action="@{/cliente/actualizarPerfil}" method="post" th:object="${cliente}">
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label>Nombre</label>
-						<input th:field="*{cliente.nombre}" type="text" class="form-control"
-							onchange="habilitarBoton()">
+						<input th:field="*{nombre}" type="text" class="form-control" onchange="habilitarBoton()">
 					</div>
 					<div class="col-md-6">
 						<label>Apellido Paterno</label>
-						<input th:field="*{cliente.apellidoPat}" type="text" class="form-control"
-							onchange="habilitarBoton()">
+						<input th:field="*{apellidoPat}" type="text" class="form-control" onchange="habilitarBoton()">
 					</div>
 					<div class="col-md-6">
 						<label>Apellido Materno</label>
-						<input th:field="*{cliente.apellidoMat}" type="text" class="form-control"
-							onchange="habilitarBoton()">
+						<input th:field="*{apellidoMat}" type="text" class="form-control" onchange="habilitarBoton()">
 					</div>
 				</div>
 				<div class="row mb-3">
 					<div class="col-md-6">
 						<label>Usuario</label>
-						<input th:field="*{cliente.username}" type="text" class="form-control"
-							onchange="habilitarBoton()">
+						<input th:field="*{username}" type="text" class="form-control" readonly>
 					</div>
 					<div class="col-md-6">
-						<label>Telefono</label>
-						<input th:field="*{cliente.telefono}" type="text" class="form-control"
-							onchange="habilitarBoton()">
+						<label>Teléfono</label>
+						<input th:field="*{telefono}" type="text" class="form-control" onchange="habilitarBoton()">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<button class="btn btn-primary" onclick="guardarDatos()" disabled>Actualizar Datos</button>
-						<button class="btn btn-danger">Eliminar Cuenta</button>
+						<button class="btn btn-primary" type="submit" disabled>Actualizar Datos</button>
 					</div>
 				</div>
 			</form>
+
 		</div>
 	</div>
-
+	<footer>
+		&copy; 2023 Software Providers. Todos los derechos reservados.
+	</footer>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

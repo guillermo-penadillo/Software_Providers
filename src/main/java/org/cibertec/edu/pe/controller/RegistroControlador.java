@@ -21,12 +21,12 @@ public class RegistroControlador {
 
     @GetMapping("/default")
     public String redirigirSegunRol(Authentication authentication) {
-        if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_CLIENTE"))) {
-            return "redirect:/cliente";
+        if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANTENEDOR"))) {
+            return "redirect:/empleado";
         } else if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
             return "redirect:/admin";
         } else {
-            throw new IllegalStateException("Rol no manejado despu�s del inicio de sesi�n");
+        	return "redirect:/cliente";
         }
     }
     @GetMapping("/cliente")

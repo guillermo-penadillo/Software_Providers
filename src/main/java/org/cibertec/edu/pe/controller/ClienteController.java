@@ -6,8 +6,9 @@
 	import java.util.Optional;
 	
 	import javax.servlet.http.HttpSession;
-	
-	import org.cibertec.edu.pe.model.Boleta;
+
+import org.cibertec.edu.pe.dto.UsuarioRegistroDTO;
+import org.cibertec.edu.pe.model.Boleta;
 	import org.cibertec.edu.pe.model.Carrito;
 	import org.cibertec.edu.pe.model.DetalleBoleta;
 	import org.cibertec.edu.pe.model.DetalleBoletaId;
@@ -24,7 +25,8 @@
 	import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
 	import org.springframework.web.bind.annotation.GetMapping;
-	import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestParam;
@@ -51,22 +53,22 @@
 	        model.addAttribute("lstProducto", productosRepo.findAll());
 	        return "ClienteVerProductos";
 	    }
-	    
-	    /*@PostMapping("/actualizar")
-	    public String actualizarCliente(Model model, Usuario usuario) {
-            Usuario clienteActualizado = usuarioService.actualizaCliente(usuario);
 
-            if (clienteActualizado != null) {
-                model.addAttribute("mensaje", "Cliente actualizado correctamente");
-            } else {
-                model.addAttribute("mensaje", "No se pudo actualizar el cliente. Cliente no encontrado.");
-            }
+		@PostMapping("/actualizarPerfil")
+		public String actualizarPerfil(@ModelAttribute("cliente") UsuarioRegistroDTO cliente, Model model) {
+			Usuario usuarioActualizado = usuarioService.actualizaCliente(cliente);
 
-            // Puedes redirigir a la página de perfil u otro lugar después de la actualización
-            return "redirect:/cliente/verPerfil/" + registroDTO.getId();
-        }
-	*/
-	    @GetMapping("/verDetalle")
+			if (usuarioActualizado != null) {
+				model.addAttribute("cliente", cliente);
+				model.addAttribute("mensaje", "Perfil actualizado con éxito");
+				return "redirect:/cliente/verPerfil/" + cliente.getUsername();
+			} else {
+				model.addAttribute("error", "No se pudo actualizar el perfil. Por favor, inténtelo de nuevo.");
+				return "redirect:/";
+			}
+		}
+
+		@GetMapping("/verDetalle")
 	    public String detalleView(@RequestParam("prodId") int prodId, Model model)  {
 	        try {
 	            Productos productos = productosRepo.findById(prodId).orElse(null);
@@ -128,7 +130,7 @@
 	                carrito.add(newProd);
 	            }
 	            session.setAttribute("carrito", carrito);
-	            System.out.println("Carrito despuÃ©s de agregar: " + carrito);
+	            System.out.println("Carrito después de agregar: " + carrito);
 	        }
 	
 	        return "redirect:/cliente/verCarrito";

@@ -112,7 +112,15 @@ body {
     background-color: #5a6268;
     border-color: #545b62;
 }
-
+footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
 /* Estilo para los botones de impresión */
 @media print {
     .btn-print {

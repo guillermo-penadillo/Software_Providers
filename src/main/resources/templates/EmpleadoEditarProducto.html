@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Editar Producto</h2>
+
+    <form th:object="${producto}" th:action="@{'/empleado/actualizar/' + ${producto.id_prod}}" method="post">
+        <input type="hidden" th:field="*{id_prod}" />
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" th:field="*{nombre_prod}" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" class="form-control" th:field="*{desc_prod}" />
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" class="form-control" th:field="*{categoria.id_cat}">
+                <option th:each="cat : ${categorias}" th:value="${cat.id_cat}" th:text="${cat.nombre_cat}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="imagen">Imagen:</label>
+            <input type="text" id="imagen" class="form-control" th:field="*{imagen}" />
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="text" id="precio" class="form-control" th:field="*{precio}" />
+        </div>
+
+        <div class="form-group">
+            <label for="calificacion">Calificación:</label>
+            <input type="text" id="calificacion" class="form-control" th:field="*{calificacion}" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

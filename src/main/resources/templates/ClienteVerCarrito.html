@@ -83,24 +83,21 @@
 				<div class="card-body">
 					<!-- Obtener el nombre de usuario del principal autenticado -->
 					<input type="hidden" id="username" th:value="${#authentication.principal.username}" />
+					<input type="hidden" th:value="${cliente.id}" name="clienteId" readonly>
 
+					<br>
 					<div class="form-group row">
-						<label class="col-md-4 col-form-label">Cliente ID</label>
+						<label class="col-md-4 col-form-label">Productos</label>
 						<div class="col-md-8">
-							<input class="form-control" th:value="${cliente.id}" name="clienteId" readonly>
+							<input class="form-control" th:value="${#lists.size(carrito)} + ' producto(s) en el carrito'" name="nombreApellido" readonly>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-md-4 col-form-label">Nombre y Apellido del Cliente</label>
-						<div class="col-md-8">
-							<input class="form-control" th:value="${cliente.nombre}" name="nombreApellido" readonly>
-						</div>
-					</div>
+					<br>
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label">Precio Total:</label>
 						<div class="col-md-8">
 							<input type="hidden" name="total" th:value="${total}">
-							<p th:text="${total}" class="form-control-plaintext"></p>
+							<input class="form-control" name="total" th:value="'S/ ' + ${total}" readonly>
 						</div>
 					</div>
 				</div>
@@ -115,7 +112,9 @@
 			<a th:href="@{'cancelarCompra'}" class="btn btn-secondary">Cancelar Compra</a>
 		</div>
 	</div>
-
+	<footer>
+		&copy; 2023 Software Providers. Todos los derechos reservados.
+	</footer>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

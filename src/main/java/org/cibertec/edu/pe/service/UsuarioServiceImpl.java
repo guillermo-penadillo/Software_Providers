@@ -112,12 +112,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         String dominio = obtenerDominio(email);
 
         switch (dominio.toLowerCase()) {
-            case "gmail.com":
-                return "CLIENTE";
-            case "empresa.com":
+            case "mantenedor.sp.com":
+                return "MANTENEDOR";
+            case "admin.sp.com":
                 return "ADMIN";
             default:
-                return "MANTENEDOR";  // O cualquier otro valor por defecto
+                return "CLIENTE";  // O cualquier otro valor por defecto
         }
     }
     //Obtener Dominio del email
@@ -150,12 +150,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     private String getRoleBasedOnEmail(String email) {
-        if (email.endsWith("@gmail.com")) {
-            return "ROLE_CLIENTE";
-        } else if (email.endsWith("@empresa.com")) {
+        if (email.endsWith("@mantenedor.sp.com")) {
+            return "ROLE_MANTENEDOR";
+        } else if (email.endsWith("@admin.sp.com")) {
             return "ROLE_ADMIN";
         } else {
-            return "ROLE_MANTENEDOR";  // Rol por defecto para otros casos
+            return "ROLE_CLIENTE";  // Rol por defecto para otros casos
         }
     }
 

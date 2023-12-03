@@ -12,8 +12,66 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-	<!-- Enlace a styles.css -->
-	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<style>
+		body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .software-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .software-item {
+            width: 30%;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        .software-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+	</style>
 </head>
 
 <body>
@@ -39,41 +97,55 @@
 		</div>
 	</div>
 </nav>
-	<br>
+
+
+<div class="container">
 	<br>
 
-	<div class="container">
-		<br>
+	<header>
 		<h4>
 			Bienvenido <span sec:authentication="principal.username"></span>
 		</h4>
+		<h1>Software Providers</h1>
+		<p>Tu plataforma para encontrar los mejores softwares</p>
 
-		<br> <br>
+	</header>
 
-		<table class="table table-striped table-bordered">
-			<thead class="table-dark">
-				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Apellido Paterno</th>
-					<th>Apellido Materno</th>
-					<th>Email</th>
-					<th>Telefono</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="usuario : ${usuarios}">
-					<td th:text="${usuario.id}">ID</td>
-					<td th:text="${usuario.nombre}">ID</td>
-					<td th:text="${usuario.apellidoPat}">ID</td>
-					<td th:text="${usuario.apellidoMat}">ID</td>
-					<td th:text="${usuario.username}">ID</td>
-					<td th:text="${usuario.telefono}">ID</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<section>
+		<h2>Productos Destacados</h2>
+		<ul class="software-list">
+			<li class="software-item">
+				<img src="/images/office365.jpg" alt="office365">
+				<h3>Microsoft 365</h3>
+				<p>Suscripción completa de productividad.</p>
+			</li>
+			<li class="software-item">
+				<img src="/images/photoshop.jpg" alt="Photoshop">
+				<h3>Adobe Photoshop</h3>
+				<p>Software de edición de imágenes.</p>
+			</li>
+			<li class="software-item">
+				<img src="/images/norton.jpg" alt="Norton">
+				<h3>Norton Antivirus</h3>
+				<p>Protección antivirus y seguridad en línea.</p>
+			</li>
+			<li class="software-item">
+				<img src="/images/sublime.jpg" alt="Sublime Text">
+				<h3>Sublime Text</h3>
+				<p>Editor de texto avanzado para codificación.</p>
+			</li>
+			<li class="software-item">
+				<img src="/images/windows10.jpg" alt="Windows 10">
+				<h3>Windows 10</h3>
+				<p>Sistema operativo moderno y eficiente.</p>
+			</li>
+		</ul>
+	</section>
 
+</div>
+<footer>
+	&copy; 2023 Software Providers. Todos los derechos reservados.
+</footer>
 
 
 	<!-- Latest compiled and minified JavaScript -->

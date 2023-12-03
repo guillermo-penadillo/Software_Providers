@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Producto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Agregar Producto</h2>
+
+    <form th:object="${nuevoProducto}" th:action="@{/empleado/agregarProducto}" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" th:field="*{nombre_prod}" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" class="form-control" th:field="*{desc_prod}" />
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" class="form-control" th:field="*{categoria.id_cat}">
+                <option th:each="cat : ${categorias}" th:value="${cat.id_cat}" th:text="${cat.nombre_cat}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="imagen">Imagen:</label>
+            <input type="text" id="imagen" class="form-control" th:field="*{imagen}" />
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="text" id="precio" class="form-control" th:field="*{precio}" />
+        </div>
+
+        <div class="form-group">
+            <label for="calificacion">Calificación:</label>
+            <input type="text" id="calificacion" class="form-control" th:field="*{calificacion}" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Agregar Producto</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -12,4 +12,5 @@ public interface UsuarioService extends UserDetailsService {
     public Usuario actualizaCliente(UsuarioRegistroDTO registroDTO);
 
     public List<Usuario> listarUsuarios();
+    
 }

@@ -22,4 +22,9 @@ public class Productos {
 	private String imagen;
 	private double precio;
 	private double calificacion;
+	
+	@Transient
+    public String getNombreCategoria() {
+        return categoria != null ? categoria.getNombre_cat() : null;
+    }
 }

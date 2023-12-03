@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos</title>
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Listado de Productos</h1>
+       
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th> 
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id_prod}"></td>
+                    <td th:text="${producto.nombre_prod}"></td>
+                    <td th:text="${producto.desc_prod}"></td>
+                    <td th:text="${producto.nombreCategoria}"></td>
+		<td>
+            <a class="btn btn-primary" th:href="@{'/empleado/actualizar/' + ${producto.id_prod}}">Actualizar</a>
+        </td>
+                    <td>
+<form method="post" th:action="@{'/empleado/eliminar/' + ${producto.id_prod}}">
+    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
+</form>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a class="btn btn-success" th:href="@{/empleado/agregar}">Agregar</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
